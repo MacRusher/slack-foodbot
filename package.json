@@ -5,17 +5,25 @@
   "description": "Slack FoodBot for Podwale7",
   "scripts": {
     "build": "rollup src/index.js --format cjs | babel --out-file handler.js",
-    "deploy": "run-s test build serverless:deploy",
-    "serverless:deploy": "SLS_IGNORE_WARNING=* serverless deploy --verbose",
+    "invoke": "run-s build serverless:invoke-local",
+    "invoke:watch": "watch 'npm run invoke' src",
+    "deploy": "run-s build serverless:deploy-function",
+    "deploy:full": "run-s test build serverless:deploy",
+    "serverless:deploy": "SLS_IGNORE_WARNING=* serverless deploy -v",
+    "serverless:deploy-function": "SLS_IGNORE_WARNING=* serverless deploy function -f hello",
+    "serverless:invoke-local": "SLS_IGNORE_WARNING=* serverless invoke local -f hello",
     "test": "echo \"Error: no tests yet\" && exit 0"
   },
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "node-fetch": "^1.6.3"
+  },
   "devDependencies": {
     "babel-cli": "^6.24.0",
     "babel-preset-env": "^1.2.2",
     "npm-run-all": "^4.0.2",
     "rollup": "^0.41.6",
-    "serverless": "^1.9.0"
+    "serverless": "^1.9.0",
+    "watch": "^1.0.2"
   }
 }

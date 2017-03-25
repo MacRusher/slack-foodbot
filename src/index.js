@@ -1,14 +1,14 @@
-import test from './test';
-
 export const hello = (event, context, callback) => {
     const response = {
-        statusCode: 200,
-        body: JSON.stringify({
-            message: 'Test message 2',
-            test: test(),
-            input: event,
-        }),
+        message: 'Test message 6',
+        input: event,
     };
-    callback(null, response);
-};
 
+    callback(null, {
+        statusCode: 200,
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(response),
+    });
+};
