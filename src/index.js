@@ -1,6 +1,8 @@
+import {getTodayPosts} from './fb';
+
 export const hello = (event, context, callback) => {
     const response = {
-        message: 'Test message 6',
+        message: 'Test message',
         input: event,
     };
 

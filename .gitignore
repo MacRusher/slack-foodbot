@@ -1,4 +1,6 @@
 .idea
 .serverless
 node_modules
+npm-debug.log
+settings.js
 handler.js

@@ -1,0 +1,8 @@
+{
+  "facebook": {
+    "token": ""
+  },
+  "slack": {
+    "token": ""
+  }
+}
