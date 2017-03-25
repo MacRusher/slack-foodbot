@@ -1,0 +1,18 @@
+{
+  "name": "slack-foodbot",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Slack FoodBot for Podwale7",
+  "scripts": {
+    "build": "babel lib -d dist",
+    "deploy": "SLS_IGNORE_WARNING=* serverless deploy --verbose",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "babel-cli": "^6.24.0",
+    "babel-preset-env": "^1.2.2",
+    "serverless": "^1.9.0"
+  }
+}
