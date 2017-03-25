@@ -1,3 +1,5 @@
+import 'babel-polyfill';
+
 import {getTodayPosts} from './fb';
 
 export const hello = (event, context, callback) => {

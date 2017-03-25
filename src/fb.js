@@ -1,7 +1,7 @@
 import fetch from 'node-fetch';
-import has from 'lodash-es/has';
+import has from 'lodash/has';
 
-import settings from '../settings.js';
+import settings from '../settings.json';
 
 if (!has(settings, 'facebook.token')) {
     throw new Error('Missing Facebook App Token!');

@@ -4,7 +4,7 @@
   "private": true,
   "description": "Slack FoodBot for Podwale7",
   "scripts": {
-    "build": "rollup -c .rollup.js",
+    "build": "babel src --out-dir dist",
     "invoke": "run-s build serverless:invoke-local",
     "invoke:watch": "watch 'npm run invoke' src",
     "deploy": "run-s build serverless:deploy-function",
@@ -16,19 +16,15 @@
   },
   "license": "MIT",
   "dependencies": {
-    "lodash-es": "^4.17.4",
+    "babel-polyfill": "^6.23.0",
+    "lodash": "^4.17.4",
     "node-fetch": "^1.6.3"
   },
   "devDependencies": {
     "babel-cli": "^6.24.0",
-    "babel-plugin-external-helpers": "^6.22.0",
     "babel-preset-env": "^1.2.2",
     "babel-preset-stage-0": "^6.22.0",
     "npm-run-all": "^4.0.2",
-    "rollup": "^0.41.6",
-    "rollup-plugin-babel": "^2.7.1",
-    "rollup-plugin-commonjs": "^8.0.2",
-    "rollup-plugin-node-resolve": "^2.0.0",
     "serverless": "^1.9.0",
     "watch": "^1.0.2"
   }

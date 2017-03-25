@@ -12,13 +12,15 @@ provider:
 
 package:
   include:
-    - handler.js
+    - dist/**
+    - node_modules/**
+    - config.json
   exclude:
     - ./**
 
 functions:
   hello:
-    handler: handler.hello
+    handler: dist/index.hello
     events:
       - http:
           path: hello

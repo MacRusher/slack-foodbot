@@ -1,6 +1,6 @@
 .idea
 .serverless
 node_modules
+dist
 npm-debug.log
-settings.js
-handler.js
+settings.json

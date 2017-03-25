@@ -5,13 +5,9 @@
       {
         "targets": {
           "node": 4.3
-        },
-        "modules": false
+        }
       }
     ],
     "stage-0"
-  ],
-  "plugins": [
-    "external-helpers"
   ]
 }
