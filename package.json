@@ -4,15 +4,18 @@
   "private": true,
   "description": "Slack FoodBot for Podwale7",
   "scripts": {
-    "build": "babel lib -d dist",
-    "deploy": "SLS_IGNORE_WARNING=* serverless deploy --verbose",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "rollup src/index.js --format cjs | babel --out-file handler.js",
+    "deploy": "run-s test build serverless:deploy",
+    "serverless:deploy": "SLS_IGNORE_WARNING=* serverless deploy --verbose",
+    "test": "echo \"Error: no tests yet\" && exit 0"
   },
   "license": "MIT",
   "dependencies": {},
   "devDependencies": {
     "babel-cli": "^6.24.0",
     "babel-preset-env": "^1.2.2",
+    "npm-run-all": "^4.0.2",
+    "rollup": "^0.41.6",
     "serverless": "^1.9.0"
   }
 }
