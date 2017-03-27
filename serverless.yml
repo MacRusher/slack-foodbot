@@ -14,14 +14,17 @@ package:
   include:
     - dist/**
     - node_modules/**
-    - config.json
+    - settings.json
   exclude:
     - ./**
 
 functions:
-  hello:
-    handler: dist/index.hello
+  slash:
+    handler: dist/main.slash
     events:
       - http:
-          path: hello
+          path: slash
           method: get
+      - http:
+          path: slash
+          method: post
