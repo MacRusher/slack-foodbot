@@ -1,0 +1,52 @@
+{
+  "resource": "/slash",
+  "path": "/slash",
+  "httpMethod": "POST",
+  "headers": {
+    "Accept": "application/json,*/*",
+    "Accept-Encoding": "gzip,deflate",
+    "CloudFront-Forwarded-Proto": "https",
+    "CloudFront-Is-Desktop-Viewer": "true",
+    "CloudFront-Is-Mobile-Viewer": "false",
+    "CloudFront-Is-SmartTV-Viewer": "false",
+    "CloudFront-Is-Tablet-Viewer": "false",
+    "CloudFront-Viewer-Country": "US",
+    "Content-Type": "application/x-www-form-urlencoded",
+    "Host": "",
+    "User-Agent": "Slackbot 1.0 (+https://api.slack.com/robots)",
+    "Via": "",
+    "X-Amz-Cf-Id": "",
+    "X-Amzn-Trace-Id": "",
+    "X-Forwarded-For": "",
+    "X-Forwarded-Port": "443",
+    "X-Forwarded-Proto": "https"
+  },
+  "queryStringParameters": null,
+  "pathParameters": null,
+  "stageVariables": null,
+  "requestContext": {
+    "accountId": "",
+    "resourceId": "",
+    "stage": "prod",
+    "requestId": "",
+    "identity": {
+      "cognitoIdentityPoolId": null,
+      "accountId": null,
+      "cognitoIdentityId": null,
+      "caller": null,
+      "apiKey": null,
+      "sourceIp": "",
+      "accessKey": null,
+      "cognitoAuthenticationType": null,
+      "cognitoAuthenticationProvider": null,
+      "userArn": null,
+      "userAgent": "Slackbot 1.0 (+https://api.slack.com/robots)",
+      "user": null
+    },
+    "resourcePath": "/slash",
+    "httpMethod": "POST",
+    "apiId": ""
+  },
+  "body": "token=XXX&team_id=xxx&team_domain=xxx&channel_id=xxx&channel_name=xxx&user_id=xxx&user_name=xxx&command=%2Fmanufaktura&text=&response_url=https%3A%2F%2Fhooks.slack.com%2Fcommands",
+  "isBase64Encoded": false
+}

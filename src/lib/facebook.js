@@ -1,22 +1,16 @@
 import moment from 'moment';
 import fetch from 'node-fetch';
-import has from 'lodash/has';
-import map from 'lodash/map';
+import qs from 'qs';
 
-import settings from '../settings.json';
+const {
+    FACEBOOK_APP_ID,
+    FACEBOOK_APP_SECRET,
+} = process.env || {};
 
-if (!has(settings, 'facebook.appId')) {
-    throw new Error('Missing Facebook settings!');
+if (!FACEBOOK_APP_ID || !FACEBOOK_APP_SECRET) {
+    throw new Error('You must provide Facebook App Environment variables: FACEBOOK_APP_ID and FACEBOOK_APP_SECRET');
 }
-
-const {appId, appSecret} = settings.facebook;
-
-if (!appId || !appSecret) {
-    throw new Error('Missing Facebook app credentials');
-}
-const accessToken = `${appId}|${appSecret}`;
-
-const qs = params => map(params, (value, key) => encodeURIComponent(key) + '=' + encodeURIComponent(value)).join('&');
+const accessToken = `${FACEBOOK_APP_ID}|${FACEBOOK_APP_SECRET}`;
 
 /**
  * Facebook Graph API wrapper
@@ -31,7 +25,7 @@ const fbApi = async (
         ...params,
     } = {}
 ) => fetch(
-    `https://graph.facebook.com/v2.8/${resource}?${qs({
+    `https://graph.facebook.com/v2.8/${resource}?${qs.stringify({
         access_token: accessToken,
         fields: fields.join(','),
         ...params

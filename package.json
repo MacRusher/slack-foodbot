@@ -6,14 +6,13 @@
   "scripts": {
     "prebuild": "rm -rf dist",
     "build": "babel src -d dist",
-    "invoke": "run-s build serverless:invoke-local",
-    "invoke:watch": "watch 'npm run invoke' src",
+    "invoke": "run-s serverless:invoke",
     "deploy": "run-s build serverless:deploy-function",
     "full-deploy": "run-s test build serverless:deploy",
     "logs": "SLS_IGNORE_WARNING=* serverless logs -f slash",
     "serverless:deploy": "SLS_IGNORE_WARNING=* serverless deploy -v",
     "serverless:deploy-function": "SLS_IGNORE_WARNING=* serverless deploy function -f slash",
-    "serverless:invoke-local": "SLS_IGNORE_WARNING=* serverless invoke local -f slash",
+    "serverless:invoke": "SLS_IGNORE_WARNING=* serverless invoke -l -f slash -p exampleData.json",
     "test": "echo \"Error: no tests yet\" && exit 0"
   },
   "license": "MIT",
@@ -21,14 +20,14 @@
     "babel-polyfill": "^6.23.0",
     "lodash": "^4.17.4",
     "moment": "^2.18.1",
-    "node-fetch": "^1.6.3"
+    "node-fetch": "^1.6.3",
+    "qs": "^6.4.0"
   },
   "devDependencies": {
     "babel-cli": "^6.24.0",
     "babel-preset-env": "^1.2.2",
     "babel-preset-stage-0": "^6.22.0",
     "npm-run-all": "^4.0.2",
-    "serverless": "^1.9.0",
-    "watch": "^1.0.2"
+    "serverless": "^1.9.0"
   }
 }
