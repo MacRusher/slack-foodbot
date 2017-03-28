@@ -2,7 +2,11 @@ import 'babel-polyfill';
 import once from 'lodash/once';
 import qs from 'qs';
 
-import {verifySlackToken} from './lib/slack';
+import {
+    verifySlackToken,
+    setupInitialResponse,
+    setupDelayedResponse,
+} from './lib/slack';
 import * as slashCommands from './slashCommands';
 
 /**
@@ -20,30 +24,20 @@ export const slash = async ({body}, context, callback) => {
     // Slack provide command with slash at the beginning
     const command = data.command.substring(1);
 
-    // Helper to return response right away
-    const response = once(({ephemeral = true, text = ''}) => callback(null, {
-        statusCode: 200,
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            response_type: ephemeral === false ? 'in_channel' : 'ephemeral',
-            text,
-        }),
-    }));
-
-    console.log('slack data', data);
+    // Helpers to return responses back to Slack
+    const initialResponse = setupInitialResponse(callback);
+    const delayedResponse = setupDelayedResponse(data.response_url);
 
     // Verify if we support this command
     if (!(command in slashCommands)) {
-        return response({text: `Unknown command: ${command}`});
+        return initialResponse({text: `Unknown command: ${command}`});
     }
 
     // Run actual slash command code
     try {
-        await slashCommands[command]({data, response});
+        await slashCommands[command]({data, initialResponse, delayedResponse});
     } catch (e) {
         console.error(e);
-        response({text: 'We\'re sorry, there was an error :('})
+        initialResponse({text: 'We\'re sorry, there was an error :('})
     }
 };
