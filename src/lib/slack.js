@@ -3,8 +3,10 @@ import once from 'lodash/once';
 import before from 'lodash/before';
 
 const {
-    SLACK_TOKEN,
+    SLACK_TOKENS = '',
 } = process.env || {};
+
+const allowedTokens = SLACK_TOKENS.split(',');
 
 /**
  * Will throw an error if provided token is different than set in env variable
@@ -13,7 +15,7 @@ const {
  * @throws {Error}
  */
 export const verifySlackToken = async token => {
-    if (token !== SLACK_TOKEN) {
+    if (!allowedTokens.includes(token)) {
         throw new Error('Invalid Slack token!');
     }
     return true;
@@ -25,21 +27,25 @@ export const verifySlackToken = async token => {
  * @param {string} text - text to display
  * @param {*} params - other slack message params
  */
-const wrapResponse = ({response_type = 'ephemeral', text = '', ...params} = {}) => ({
+const wrapResponse = ({response_type = 'ephemeral', text, ...params} = {}) => text ? ({
     statusCode: 200,
     headers: {
         'Content-Type': 'application/json',
     },
     body: JSON.stringify({
+        response_type,
         text,
         ...params
     }),
+}) : ({
+    // If there is no text then return plain code 200
+    statusCode: 200
 });
 
 /**
  * Take lambda callback and return a function to send a initial response.
  * @param {function} cb - lambda callback
- * @returns {function} Function that can be called only once and must be called within next 1.5 second
+ * @returns {function} Function that can be called only once and must be called within next second
  */
 export const setupInitialResponse = cb => {
     const response = once(async params => {
@@ -47,9 +53,9 @@ export const setupInitialResponse = cb => {
         return true; // We assume that it was a success
     });
 
-    const timeout = setTimeout(response, 1500, {
-        text: 'We\'re processing your request, please wait... and hope we will do anything :)'
-    });
+    // If there will be no initial response in next second
+    // then return empty response to prevent slack from showing error
+    const timeout = setTimeout(response, 1000);
 
     return async params => {
         clearTimeout(timeout);
@@ -78,3 +84,5 @@ export const setupDelayedResponse = (responseUrl) => {
         .catch(() => false);
     });
 };
+
+export const getSenderUsernameLink = (data = {}) => `<@${data.user_id}|${data.user_name}>`;

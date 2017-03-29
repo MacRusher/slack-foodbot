@@ -1,5 +1,4 @@
 import 'babel-polyfill';
-import once from 'lodash/once';
 import qs from 'qs';
 
 import {
@@ -38,6 +37,6 @@ export const slash = async ({body}, context, callback) => {
         await slashCommands[command]({data, initialResponse, delayedResponse});
     } catch (e) {
         console.error(e);
-        initialResponse({text: 'We\'re sorry, there was an error :('})
+        delayedResponse({text: 'We\'re sorry, there was an error :('})
     }
 };

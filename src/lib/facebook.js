@@ -53,6 +53,7 @@ export const getTodayPosts = async ({pageId}) => {
     const posts = await fbApi(`${pageId}/posts`, {
         fields: [
             'message',
+            'picture',
             'full_picture',
             'created_time',
         ]
