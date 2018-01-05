@@ -1,0 +1,28 @@
+{
+  "name": "slack-foodbot",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Automating lunch with your team since 2016 :)",
+  "scripts": {
+    "invoke": "sls invoke -l -f sendFoodletter",
+    "deploy": "sls deploy function -f sendFoodletter",
+    "full-deploy": "sls deploy -v",
+    "logs": "sls logs -f sendFoodletter",
+    "test": "echo \"Warning: no tests yet\" && exit 0"
+  },
+  "dependencies": {
+    "lodash": "4.17.4",
+    "moment": "2.20.1",
+    "node-fetch": "1.7.3",
+    "qs": "6.5.1"
+  },
+  "devDependencies": {
+    "@types/lodash": "4.14.92",
+    "@types/node": "4.0.35",
+    "@types/node-fetch": "1.6.7",
+    "@types/qs": "6.5.1",
+    "serverless": "1.25.0",
+    "serverless-plugin-typescript": "1.1.5"
+  },
+  "license": "MIT"
+}
