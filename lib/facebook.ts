@@ -18,11 +18,11 @@ interface FbApiParams {
     [param: string]: any;
 }
 export interface FbPost {
+    created_time: string;
+    full_picture?: string;
     id: string;
     message: string;
     picture?: string;
-    full_picture?: string;
-    created_time: string;
 }
 export interface FbPage {
     id: string;

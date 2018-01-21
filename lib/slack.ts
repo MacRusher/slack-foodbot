@@ -13,11 +13,11 @@ if (!SLACK_FOOD_CHANNEL) {
 }
 
 export interface SlackMessage {
-    text?: string;
     attachments?: SlackMessageAttachment[];
-    thread_ts?: string;
     icon_emoji?: string;
     icon_url?: string;
+    text?: string;
+    thread_ts?: string;
     username?: string;
 }
 
@@ -30,19 +30,19 @@ export interface SlackMessageAttachment {
 }
 
 export interface SlackMessageResponse {
-    ok: boolean;
-    error?: string;
     channel?: string;
-    ts?: string;
+    error?: string;
     message?: {
-        text?: string
-        username?: string
-        bot_id?: string
         attachments?: SlackMessageAttachment[]
-        type?: string
+        bot_id?: string
         subtype?: string
+        text?: string
         ts: string,
+        type?: string
+        username?: string
     };
+    ok: boolean;
+    ts?: string;
 }
 
 /**
