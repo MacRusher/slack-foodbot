@@ -11,21 +11,8 @@ provider:
   stage: dev
   region: eu-west-1
 
-# you can add packaging information here
-#package:
-#  include:
-#    - include-me.js
-#    - include-me-dir/**
-#  exclude:
-#    - exclude-me.js
-#    - exclude-me-dir/**
-
 functions:
   sendFoodletter:
     handler: foodletter/handlers.sendFoodletter
-
     events:
-      - http:
-          path: sendFoodletter
-          method: get
-#      - schedule: rate(10 minutes)
+      - schedule: cron(15 11 ? * MON-FRI *) # 11:15 during workdays
