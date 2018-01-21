@@ -13,27 +13,27 @@ if (!SLACK_FOOD_CHANNEL) {
 }
 
 export interface SlackMessage {
-    text?: string
-    attachments?: SlackMessageAttachment[]
-    thread_ts?: string
-    icon_emoji?: string
-    icon_url?: string
-    username?: string
+    text?: string;
+    attachments?: SlackMessageAttachment[];
+    thread_ts?: string;
+    icon_emoji?: string;
+    icon_url?: string;
+    username?: string;
 }
 
 export interface SlackMessageAttachment {
-    color?: string
-    fallback?: string
-    image_url?: string
-    text: string
-    thumb_url?: string
+    color?: string;
+    fallback?: string;
+    image_url?: string;
+    text: string;
+    thumb_url?: string;
 }
 
 export interface SlackMessageResponse {
-    ok: boolean
-    error?: string
-    channel?: string
-    ts?: string
+    ok: boolean;
+    error?: string;
+    channel?: string;
+    ts?: string;
     message?: {
         text?: string
         username?: string
@@ -41,8 +41,8 @@ export interface SlackMessageResponse {
         attachments?: SlackMessageAttachment[]
         type?: string
         subtype?: string
-        ts: string
-    }
+        ts: string,
+    };
 }
 
 /**
@@ -50,12 +50,6 @@ export interface SlackMessageResponse {
  */
 export const postMessage = async (message: SlackMessage): Promise<string> => {
     return fetch('https://slack.com/api/chat.postMessage', {
-        method: 'POST',
-        timeout: 5000,
-        headers: {
-            Authorization: `Bearer ${SLACK_BOT_TOKEN}`,
-            'Content-type': 'application/json'
-        },
         body: JSON.stringify({
             ...message,
             as_user: !message.username,
@@ -65,7 +59,13 @@ export const postMessage = async (message: SlackMessage): Promise<string> => {
             reply_broadcast: false,
             unfurl_links: false,
             unfurl_media: true,
-        })
+        }),
+        headers: {
+            'Authorization': `Bearer ${SLACK_BOT_TOKEN}`,
+            'Content-type': 'application/json',
+        },
+        method: 'POST',
+        timeout: 5000,
     })
         .then(res => res.json())
         .then((res: SlackMessageResponse) => {

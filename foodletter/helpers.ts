@@ -21,19 +21,19 @@ export const getRestaurantMessage = async (pageId: string): Promise<SlackMessage
     const posts = await getTodayPosts(pageId);
 
     if (posts.length === 0) {
-        throw new Error('No posts for today')
+        throw new Error('No posts for today');
     }
 
     return {
-        username: page.name,
-        icon_url: page.picture,
         attachments: posts.map(({message = '', picture, full_picture}, i) => ({
             // UX tweak: make it green for first post and gray for all other
             color: i > 0 ? '#cccccc' : 'good',
             fallback: message,
+            image_url: full_picture,
             text: message,
             thumb_url: picture,
-            image_url: full_picture,
         })),
+        icon_url: page.picture,
+        username: page.name,
     };
 };

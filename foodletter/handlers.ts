@@ -6,10 +6,10 @@ import {getFoodletterMessage, getRestaurantMessage} from './helpers';
  */
 export async function sendFoodletter(event, context, callback) {
     // Send welcome message to start the thread
-    const thread_ts = await getFoodletterMessage().then(postMessage);
+    const threadTs = await getFoodletterMessage().then(postMessage);
 
-    if (!thread_ts) {
-        throw new Error(`Missing thread ts`)
+    if (!threadTs) {
+        throw new Error(`Missing thread ts`);
     }
 
     // List of nearby restaurants Facebook page ids
@@ -18,8 +18,8 @@ export async function sendFoodletter(event, context, callback) {
             // Add replies to the thread for each supported restaurant
             await postMessage({
                 ...await getRestaurantMessage(pageId),
-                thread_ts,
-            })
+                thread_ts: threadTs,
+            });
         } catch (e) {
             // Ok it could fail, not a problem
             console.error(e);
@@ -28,7 +28,7 @@ export async function sendFoodletter(event, context, callback) {
 
     // Execution was successful
     callback(null, {
+        body: threadTs,
         statusCode: 200,
-        body: thread_ts,
     });
 }

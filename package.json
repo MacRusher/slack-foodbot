@@ -8,7 +8,7 @@
     "deploy": "sls deploy function -f sendFoodletter",
     "full-deploy": "sls deploy -v",
     "logs": "sls logs -f sendFoodletter",
-    "test": "echo \"Warning: no tests yet\" && exit 0"
+    "test": "tslint -p . -t verbose"
   },
   "dependencies": {
     "lodash": "4.17.4",
@@ -22,7 +22,9 @@
     "@types/node-fetch": "1.6.7",
     "@types/qs": "6.5.1",
     "serverless": "1.25.0",
-    "serverless-plugin-typescript": "1.1.5"
+    "serverless-plugin-typescript": "1.1.5",
+    "tslint": "5.9.1",
+    "typescript": "2.6.2"
   },
   "license": "MIT"
 }

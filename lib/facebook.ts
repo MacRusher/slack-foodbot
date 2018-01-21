@@ -1,7 +1,7 @@
+import {get} from 'lodash';
 import * as moment from 'moment';
 import fetch from 'node-fetch';
 import {stringify} from 'qs';
-import {get} from 'lodash';
 
 const {
     FACEBOOK_APP_ID = null,
@@ -14,20 +14,20 @@ if (!FACEBOOK_APP_ID || !FACEBOOK_APP_SECRET) {
 const accessToken = `${FACEBOOK_APP_ID}|${FACEBOOK_APP_SECRET}`;
 
 interface FbApiParams {
-    fields?: string[]
-    [param: string]: any
+    fields?: string[];
+    [param: string]: any;
 }
 export interface FbPost {
-    id: string
-    message: string
-    picture?: string
-    full_picture?: string
-    created_time: string
+    id: string;
+    message: string;
+    picture?: string;
+    full_picture?: string;
+    created_time: string;
 }
 export interface FbPage {
-    id: string
-    name: string
-    picture?: string
+    id: string;
+    name: string;
+    picture?: string;
 }
 
 /**
@@ -41,7 +41,7 @@ const fbApi = async (resource: string = '', {fields = [], ...params}: FbApiParam
         `https://graph.facebook.com/v2.11/${resource}?${stringify({
             access_token: accessToken,
             fields: fields.join(','),
-            ...params
+            ...params,
         })}`)
         .then(res => res.json())
         .then(res => {
@@ -62,12 +62,12 @@ export const getPageInfo = async (pageId: string): Promise<FbPage> => {
         fields: [
             'name',
             'picture',
-        ]
+        ],
     });
     return {
         ...page,
-        picture: get(page, 'picture.data.url')
-    }
+        picture: get(page, 'picture.data.url'),
+    };
 };
 
 /**
@@ -81,7 +81,7 @@ export const getTodayPosts = async (pageId: string): Promise<FbPost[]> => {
             'picture',
             'full_picture',
             'created_time',
-        ]
+        ],
     }).then(res => res.data);
 
     // Comparing based on UTC concept of a day - should not be an issue here
