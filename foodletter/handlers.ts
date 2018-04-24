@@ -1,6 +1,14 @@
 import {postMessage} from '../lib/slack';
 import {getFoodletterMessage, getRestaurantMessage} from './helpers';
 
+// List of nearby restaurants Facebook page ids
+const restaurants = [
+    'precle.covrigi',
+    'goodtimeswroclaw',
+    'manufakturabezglutenowa',
+    'meetandeatpegaz',
+];
+
 /**
  * Main function that should be invoked once a day
  */
@@ -12,8 +20,7 @@ export async function sendFoodletter(event, context, callback) {
         throw new Error(`Missing thread ts`);
     }
 
-    // List of nearby restaurants Facebook page ids
-    ['precle.covrigi', 'manufakturabezglutenowa', 'meetandeatpegaz'].forEach(async pageId => {
+    restaurants.forEach(async pageId => {
         try {
             // Add replies to the thread for each supported restaurant
             await postMessage({

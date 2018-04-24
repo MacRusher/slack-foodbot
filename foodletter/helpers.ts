@@ -21,7 +21,7 @@ export const getRestaurantMessage = async (pageId: string): Promise<SlackMessage
     const posts = await getTodayPosts(pageId);
 
     if (posts.length === 0) {
-        throw new Error('No posts for today');
+        throw new Error(`No posts for ${page.name} today`);
     }
 
     return {
