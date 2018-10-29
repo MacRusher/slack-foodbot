@@ -1,6 +1,6 @@
 service: slack-foodbot2
 
-frameworkVersion: "~1.25"
+frameworkVersion: "~1.32"
 
 plugins:
   - serverless-plugin-typescript
