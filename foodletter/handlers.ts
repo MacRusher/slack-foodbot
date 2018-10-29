@@ -4,9 +4,9 @@ import {getFoodletterMessage, getRestaurantMessage} from './helpers';
 // List of nearby restaurants Facebook page ids
 const restaurants = [
     'precle.covrigi',
-    'goodtimeswroclaw',
+    'Sharp-Change-Food-Pub-473051106511803',
     'manufakturabezglutenowa',
-    'meetandeatpegaz',
+    'meet.pegaz',
 ];
 
 /**
