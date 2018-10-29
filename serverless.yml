@@ -15,4 +15,4 @@ functions:
   sendFoodletter:
     handler: foodletter/handlers.sendFoodletter
     events:
-      - schedule: cron(15 9 ? * MON-FRI *) # 11:15 CET during workdays
+      - schedule: cron(0 11 ? * MON-FRI *) # 12:00 CET during workdays
