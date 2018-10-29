@@ -39,7 +39,7 @@ export interface SlackMessageResponse {
         text?: string
         ts: string,
         type?: string
-        username?: string
+        username?: string,
     };
     ok: boolean;
     ts?: string;
