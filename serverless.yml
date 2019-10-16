@@ -1,13 +1,13 @@
 service: slack-foodbot2
 
-frameworkVersion: "~1.32"
+frameworkVersion: "~1.54"
 
 plugins:
   - serverless-plugin-typescript
 
 provider:
   name: aws
-  runtime: nodejs6.10
+  runtime: nodejs10.x
   stage: dev
   region: eu-west-1
 
