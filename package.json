@@ -21,7 +21,7 @@
     "@types/node": "10.14.22",
     "@types/node-fetch": "2.5.2",
     "@types/qs": "6.5.3",
-    "serverless": "1.54.0",
+    "serverless": "3.25.1",
     "serverless-plugin-typescript": "1.1.9",
     "tslint": "5.20.0",
     "typescript": "3.6.4"
